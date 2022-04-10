@@ -1,7 +1,6 @@
 package ru.xdsup.HorseOfAtilla.services;
 
 import lombok.extern.log4j.Log4j2;
-import lombok.val;
 import lombok.var;
 import org.springframework.stereotype.Service;
 import ru.xdsup.HorseOfAtilla.core.figures.Coord;
@@ -20,7 +19,7 @@ public class AtillaServiceFactory {
     public static final int maxSize = 500;
     public static final int KING_NOT_DEFEAT_POINT = 100;
 
-    public AtillaSolverService getHeuristicsService(){
+    public AtillaSolverService getHeuristicsServiceManhattan(){
         // эвристика манхэттенское расстояние
         return new AtillaSolverWithHeuristicsService(maxSize, board -> {
             Coord start = board.getKnight().getCoords();
@@ -34,7 +33,7 @@ public class AtillaServiceFactory {
         });
     }
 
-    public AtillaSolverService getHeuristicsService3(){
+    public AtillaSolverService getHeuristicsServiceHorse(){
         // эвристика "Метрика коня" http://kvant.mccme.ru/1981/10/metrika_konya.htm
         return new AtillaSolverWithHeuristicsService(maxSize, board -> {
             Coord start = board.getKnight().getCoords();
@@ -44,7 +43,6 @@ public class AtillaServiceFactory {
             // TODO: доделать
             var range = start.getHorseRange(end);
             range += board.isKingDefeated() ? 0 : KING_NOT_DEFEAT_POINT;
-            //log.info("Расстояние" + range + "; путь" + board);
             return range;
         });
     }

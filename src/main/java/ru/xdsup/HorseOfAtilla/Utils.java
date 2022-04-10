@@ -38,6 +38,6 @@ public class Utils
 		String x = "";
 		for (long i = depth; i != 0; i--)
 			x += "x^" + i + "+";
-		return x + countNodes + "=0";
+		return x + (-countNodes + 1) + "=0";
 	}
 }

@@ -13,7 +13,6 @@ import ru.xdsup.HorseOfAtilla.core.figures.King;
 import ru.xdsup.HorseOfAtilla.core.figures.Knight;
 import ru.xdsup.HorseOfAtilla.dto.AtillaRequest;
 import ru.xdsup.HorseOfAtilla.dto.AtillaResponse;
-import ru.xdsup.HorseOfAtilla.services.AtillaSolverWithQueueService;
 import ru.xdsup.HorseOfAtilla.services.AtillaServiceFactory;
 
 import java.util.Arrays;
@@ -48,9 +47,9 @@ public class AtillaController {
         AtillaSolverService service = "queue".equals(request.getFindType())
                 ? factory.getQueueService()
                 : "heuristic".equals(request.getFindType())
-                ? factory.getHeuristicsService()
+                ? factory.getHeuristicsServiceManhattan()
                 : "heuristic3".equals(request.getFindType())
-                ? factory.getHeuristicsService3()
+                ? factory.getHeuristicsServiceHorse()
                 : factory.getStackService(request.getMaxMoveCount());
         val response = new AtillaResponse();
         response.setKing(request.getKing());

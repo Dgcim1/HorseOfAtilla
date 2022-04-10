@@ -21,7 +21,6 @@ public abstract class AtillaBaseSolverService implements AtillaSolverService
 		statistic = new Statistic();
 		//1 - помещаем в список открытых вершин нач сост
 		addPotentialState(initialState);
-
 		Board potentialState;
 		//2 цикл поиска
 		do
@@ -29,10 +28,8 @@ public abstract class AtillaBaseSolverService implements AtillaSolverService
 			//2.1 извлекаем вершину из поиска и удаляем ее (2.3)
 			potentialState = getPotentialState();
 			statistic.statesHandled ++;
-
 			if(statistic.statesHandled  % 1000 == 0)
 				log.info("Обработано " + statistic.statesHandled  + " вершин");
-
 			//2.2 проверяем на соответст целевому состоянию
 			if(isEndState(potentialState)){
 					log.info("Решение найдено! Обработано " + statistic.statesHandled  + " вершин");
